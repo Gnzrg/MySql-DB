@@ -1,0 +1,32 @@
+###
+GET http://localhost:8090/api/user
+
+###
+POST http://localhost:8090/api/user
+Content-Type: application/json
+
+{
+    "userName" : "Taami",
+    "firstName" : "Nado",
+    "userType" : "Admin",
+    "lastName" : "Test",
+    "password" : "123"
+
+} 
+
+### 
+PUT http://localhost:8090/api/user
+Content-Type: application/json
+
+{
+    "userName" : "Jantska1",
+    "firstName" : "Nado1",
+    "userType" : "Admin1",
+    "lastName" : "Test1",
+    "password" : "1231",
+    "userId" : "03cc5af1-6f0c-4389-83f5-1965f07cd410"
+
+}
+
+###
+DELETE http://localhost:8090/api/user/2

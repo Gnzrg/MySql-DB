@@ -1,0 +1,29 @@
+###
+GET http://localhost:8090/api/menu
+ 
+
+###
+POST http://localhost:8090/api/menu
+Content-Type: application/json
+
+{
+    
+    "menuName" : "Add",
+    "link" : "/help",
+    "position" : 1
+}
+###
+DELETE http://localhost:8090/api/menu/2e2e2b9d-4ec2-4108-8f09-36d6c92ab693
+
+###
+PUT http://localhost:8090/api/menu
+Content-Type: application/json
+
+{
+    "menuName" : "Help",
+    "link" : "/contact",
+    "position" : 1,
+    "id" : "7337c45a-b28f-43d2-9816-041d82501824"
+}
+###
+GET http://localhost:8090/api/menu/60d23020-c4bc-4476-8e9c-bffede2a9bab
