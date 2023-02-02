@@ -1,0 +1,23 @@
+###
+GET http://localhost:8090/api/category
+
+###
+POST http://localhost:8090/api/category
+Content-Type: application/json
+
+{
+    "categoryName" : "Sport",
+    "categoryId" : 6
+}
+
+###
+DELETE http://localhost:8090/api/category/6
+
+### 
+PUT http://localhost:8090/api/category/7
+Content-Type: application/json
+
+{
+     "categoryId": 6,
+      "categoryName": "4a"
+}

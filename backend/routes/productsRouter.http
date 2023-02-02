@@ -1,0 +1,29 @@
+###
+GET http://localhost:8090/api/products
+
+###
+POST http://localhost:8090/api/products
+Content-Type: application/json
+
+{
+    "productName": "Shoes",
+      "categoryName": "Clothes",
+      "categpryId": 3,
+      "price": "$3.99",
+      "isTrending": true
+}
+###
+DELETE http://localhost:8090/api/products/1
+
+###
+PUT http://localhost:8090/api/products
+Content-Type: application/json
+
+{ 
+     "productId": "b6b932b9-f52b-486c-bcb1-3ac12dafea24",
+     "productName": "MicroWave",
+      "categoryName": "Home",
+      "categpryId": 2,
+      "price": "$6.99",
+      "isTrending": true
+}

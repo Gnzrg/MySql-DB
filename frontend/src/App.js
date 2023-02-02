@@ -1,19 +1,20 @@
 import "./App.css";
 import "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import AdminHeader from "./components/adminHeader";
+import AdminLayout from "./components/AdminLayout";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminProducts from "./components/AdminProducts";
+import { Routes, Route } from "react-router-dom";
+import Users from "./components/Users";
 function App() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8090/api/menu")
-      .then((res) => setData(res.data.result));
-  }, []);
-  console.log(data);
   return (
     <div className="App">
-      <AdminHeader data={data} />
+      <Routes>
+        <Route element={<AdminLayout />}>
+          <Route path="/" element={<AdminDashboard />} />
+          <Route path="/products" element={<AdminProducts />} />
+          <Route path="/users" element={<Users />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
