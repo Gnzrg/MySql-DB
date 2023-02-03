@@ -38,23 +38,16 @@ exports.create = (req, res) => {
   });
 };
 exports.update = (req, res) => {
-  const { userId, firstName, lastName, userName, password, userType } =
-    req.body;
+  const { firstName, lastName, userName, password, userType } = req.body;
+  const { id } = req.params;
 
   fs.readFile(dataFile, "utf-8", (readErr, data) => {
     if (readErr) {
       return res.json({ status: false, message: readErr });
     }
-    const updateData = JSON.parse(data).filter((user) => {
-      if (user.userId == userId) {
-        console.log({
-          ...user,
-          firstName,
-          lastName,
-          userName,
-          password,
-          userType,
-        });
+    const parsedData = JSON.parse(data);
+    const updateData = parsedData.map((user) => {
+      if (user.userId == id) {
         return { ...user, firstName, lastName, userName, password, userType };
       } else {
         return user;

@@ -15,18 +15,17 @@ Content-Type: application/json
 } 
 
 ### 
-PUT http://localhost:8090/api/user
+PUT http://localhost:8090/api/user/b57fb59c-d11d-4c94-809c-e51665e61cd8
 Content-Type: application/json
 
 {
-    "userName" : "Jantska1",
-    "firstName" : "Nado1",
-    "userType" : "Admin1",
-    "lastName" : "Test1",
-    "password" : "1231",
-    "userId" : "03cc5af1-6f0c-4389-83f5-1965f07cd410"
+    "userName" : "Ganzooooo",
+    "firstName" : "Ganzorig",
+    "userType" : "User",
+    "lastName" : "Bat-Erdene",
+    "password" : "1231"
 
 }
 
 ###
-DELETE http://localhost:8090/api/user/2
+DELETE http://localhost:8090/api/user/3e65e6fe-e962-4a50-a4be-db1d59f7c05b
