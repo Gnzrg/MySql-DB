@@ -13,20 +13,30 @@ exports.getAll = (req, res) => {
   });
 };
 exports.create = (req, res) => {
-  const { categoryName, categoryId } = req.body;
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
-    }
-    const parsedData = JSON.parse(data);
-    const newCat = { categoryId, categoryName };
-    parsedData.push(newCat);
+  const { categoryId, categoryName } = req.body;
 
-    fs.writeFile(dataFile, JSON.stringify(parsedData), (writeErr) => {
+  fs.readFile(dataFile, "utf-8", (err, data) => {
+    const parsedData = JSON.parse(data);
+
+    const newArr = [...parsedData];
+
+    console.log(newArr);
+
+    const aa = { categoryId: +categoryId, categoryName: categoryName };
+
+    newArr.push(aa);
+
+    console.log(aa);
+
+    console.log(newArr);
+
+    // console.log(typeOf(newObj));
+
+    fs.writeFile(dataFile, JSON.stringify(newArr), (writeErr) => {
       if (writeErr) {
         return res.json({ status: false, message: writeErr });
       }
-      return res.json({ status: true, result: parsedData });
+      return res.json({ status: true, result: newArr });
     });
   });
 };

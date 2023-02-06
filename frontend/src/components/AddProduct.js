@@ -5,9 +5,9 @@ export default function AddProduct({ handleChange }) {
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [img, setImg] = useState("");
-  const [isTrending , setIsTrending] = useState();
-  const [category , setCategory] = useState("");
-  const [discount , setDiscount] = useState("")
+  const [isTrending, setIsTrending] = useState();
+  const [category, setCategory] = useState("");
+  const [discount, setDiscount] = useState("");
 
   const Create = () => {
     fetch("http://localhost:8090/api/products", {
@@ -17,9 +17,9 @@ export default function AddProduct({ handleChange }) {
         productName: productName,
         price: price,
         img: img,
-        discount : discount,
-        isTrending : isTrending,
-        categoryName : category
+        discount: discount,
+        isTrending: isTrending,
+        categoryName: category,
 
         /* other product data */
       }),
@@ -48,7 +48,10 @@ export default function AddProduct({ handleChange }) {
             setProductName(e.target.value);
           }}
         />
-        <select className="form-control mt-3" onChange={(e) => setCategory(e.target.value)}>
+        <select
+          className="form-control mt-3"
+          onChange={(e) => setCategory(e.target.value)}
+        >
           <option value="0">Category</option>
           <option value="Smartphone">Smartphone</option>
           <option value="Home">Home</option>
@@ -84,12 +87,14 @@ export default function AddProduct({ handleChange }) {
             formData.append("upload_preset", "lwvom2iu");
 
             axios.post(url, formData).then((res) => {
-              setImg(res);
+              setImg(res.data.secure_url);
             });
           }}
         />
-        <select className="form-control mt-3" onChange={(e) => setIsTrending(e.target.value)}>
-          
+        <select
+          className="form-control mt-3"
+          onChange={(e) => setIsTrending(e.target.value)}
+        >
           <option>isTrending</option>
           <option value={true}>True</option>
           <option value={false}>False</option>

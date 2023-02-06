@@ -2,15 +2,21 @@ import React from "react";
 import { useState } from "react";
 export default function CreateCAtegory({ setShow, show }) {
   const [catName, setCatName] = useState("");
-  const [catId, setCatId] = useState(0);
+  const [catId, setCatId] = useState();
+
   const Create = () => {
+    const TBody = JSON.stringify({
+      categoryName: catName,
+      categoryId: catId,
+      type: "HI",
+    });
+
+    console.log(TBody);
+
     fetch("http://localhost:8090/api/category", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        categoryName: catName,
-        categoryId: catId,
-      }),
+      body: TBody,
     })
       .then((res) => res.json())
       .then((data) => console.log(data));

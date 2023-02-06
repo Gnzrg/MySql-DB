@@ -8,6 +8,8 @@ export default function Users() {
   const [show, setShow] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [userId, setUserId] = useState("");
+  const [selectedUser, setSelectedUser] = useState();
+
   useEffect(() => {
     axios
       .get("http://localhost:8090/api/user")
@@ -23,13 +25,19 @@ export default function Users() {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-  const Edit = (id) => {
+  const Edit = (id, user) => {
+    setSelectedUser(user);
     setUserId(id);
     setIsEdit(!isEdit);
     setShow(true);
   };
   return show ? (
-    <CreateUser id={userId} show={handleShow} setShow={setShow} />
+    <CreateUser
+      id={userId}
+      show={handleShow}
+      setShow={setShow}
+      selectedUser={selectedUser}
+    />
   ) : (
     <div>
       <div className="w-100 d-flex justify-content-end py-2">
@@ -68,7 +76,7 @@ export default function Users() {
                   <button
                     className="btn btn-warning"
                     onClick={() => {
-                      Edit(e.userId);
+                      Edit(e.userId, e);
                     }}
                   >
                     Edit

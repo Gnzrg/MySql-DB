@@ -16,11 +16,11 @@ export default function AdminProducts() {
   };
   const handleDelete = (id) => {
     fetch(`http://localhost:8090/api/products/${id}`, {
-method: 'DELETE',
-})
-.then(res => res.json())
-.then((data)=>console.log(data));
-  }
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   console.log(proData);
   return add ? (
     <AddProduct handleChange={handleChange} />
@@ -42,16 +42,27 @@ method: 'DELETE',
               <h3>{e.productName}</h3>
               <h5>{e.categoryName}</h5>
               <div className="d-flex justify-content-between">
-                <h6>{e.price}</h6>
+                <div className="d-flex gap-2">
+                  <h6>{e.price}</h6>
+                  <h6 className="bg-success border rounded text-light px-2">
+                    {e.discount}% Sale
+                  </h6>
+                </div>
+
                 {e.isTrending ? (
                   <h6 className="text-success">Trending</h6>
                 ) : (
                   <h6 className="text-danger">Not Trending</h6>
                 )}
               </div>
-              <div className="w-100 d-flex justify-content-between "> 
+              <div className="w-100 d-flex justify-content-between ">
                 <button className="w-25 btn btn-warning">Edit</button>
-                <button className="w-25 btn btn-danger" onClick={() => handleDelete(e.productId)}>Delete</button>
+                <button
+                  className="w-25 btn btn-danger"
+                  onClick={() => handleDelete(e.productId)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           );
