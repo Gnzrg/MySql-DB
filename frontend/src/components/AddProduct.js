@@ -5,6 +5,10 @@ export default function AddProduct({ handleChange }) {
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [img, setImg] = useState("");
+  const [isTrending , setIsTrending] = useState();
+  const [category , setCategory] = useState("");
+  const [discount , setDiscount] = useState("")
+
   const Create = () => {
     fetch("http://localhost:8090/api/products", {
       method: "POST",
@@ -13,6 +17,9 @@ export default function AddProduct({ handleChange }) {
         productName: productName,
         price: price,
         img: img,
+        discount : discount,
+        isTrending : isTrending,
+        categoryName : category
 
         /* other product data */
       }),
@@ -41,12 +48,13 @@ export default function AddProduct({ handleChange }) {
             setProductName(e.target.value);
           }}
         />
-        <input className="form-control mt-3" placeholder="Category Name..." />
-        <input
-          className="form-control mt-3"
-          type="number"
-          placeholder="Category Name..."
-        />
+        <select className="form-control mt-3" onChange={(e) => setCategory(e.target.value)}>
+          <option value="0">Category</option>
+          <option value="Smartphone">Smartphone</option>
+          <option value="Home">Home</option>
+          <option value="Clothes">Clothes</option>
+        </select>
+
         <input
           className="form-control mt-3"
           placeholder="Price..."
@@ -58,6 +66,7 @@ export default function AddProduct({ handleChange }) {
           className="form-control mt-3"
           type="number"
           placeholder="Discount percent"
+          onChange={(e) => setDiscount(e.target.value)}
         />
         <input
           type="file"
@@ -79,11 +88,11 @@ export default function AddProduct({ handleChange }) {
             });
           }}
         />
-        <select className="form-control mt-3">
-          <input />
+        <select className="form-control mt-3" onChange={(e) => setIsTrending(e.target.value)}>
+          
           <option>isTrending</option>
-          <option>True</option>
-          <option>True</option>
+          <option value={true}>True</option>
+          <option value={false}>False</option>
         </select>
         <button className="btn btn-primary mt-3" onClick={Create}>
           Add

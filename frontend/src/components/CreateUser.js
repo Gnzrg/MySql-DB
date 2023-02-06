@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 export default function CreateUser({ show, setShow, id }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
   const [username, setUsername] = useState("");
   const [userType, setUserType] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,11 @@ export default function CreateUser({ show, setShow, id }) {
   const Create = (id) => {
     data.map((e) => {
       if (id == e.userId) {
+        setFirstName(e.firstName)
+        setLastName(e.lastName)
+        setUsername(e.username)
+        setPassword(e.password)
+        setUserType(e.userType)
         fetch(`http://localhost:8090/api/user/${id}`, {
           method: "PUT" /* or PATCH */,
           headers: { "Content-Type": "application/json" },
@@ -58,7 +63,7 @@ export default function CreateUser({ show, setShow, id }) {
       <div className="w-50 d-flex flex-column gap-3">
         <input
           className="form-control"
-          // placeholder="FirstName..."
+          placeholder="FirstName..."
           onChange={(e) => {
             setFirstName(e.target.value);
           }}
@@ -66,7 +71,7 @@ export default function CreateUser({ show, setShow, id }) {
         />
         <input
           className="form-control"
-          // placeholder="LastName..."
+          placeholder="LastName..."
           onChange={(e) => {
             setLastName(e.target.value);
           }}
@@ -74,7 +79,7 @@ export default function CreateUser({ show, setShow, id }) {
         />
         <input
           className="form-control"
-          // placeholder="Username..."
+          placeholder="Username..."
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -83,7 +88,7 @@ export default function CreateUser({ show, setShow, id }) {
         <input
           className="form-control"
           type="password    "
-          // placeholder="Password..."
+          placeholder="Password..."
           onChange={(e) => {
             setPassword(e.target.value);
           }}

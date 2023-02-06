@@ -14,6 +14,13 @@ export default function AdminProducts() {
   const handleChange = () => {
     setAdd(!add);
   };
+  const handleDelete = (id) => {
+    fetch(`http://localhost:8090/api/products/${id}`, {
+method: 'DELETE',
+})
+.then(res => res.json())
+.then((data)=>console.log(data));
+  }
   console.log(proData);
   return add ? (
     <AddProduct handleChange={handleChange} />
@@ -41,6 +48,10 @@ export default function AdminProducts() {
                 ) : (
                   <h6 className="text-danger">Not Trending</h6>
                 )}
+              </div>
+              <div className="w-100 d-flex justify-content-between "> 
+                <button className="w-25 btn btn-warning">Edit</button>
+                <button className="w-25 btn btn-danger" onClick={() => handleDelete(e.productId)}>Delete</button>
               </div>
             </div>
           );
