@@ -1,25 +1,21 @@
 import React from "react";
 import { useState } from "react";
-export default function CreateCAtegory({ setShow, show }) {
+import axios from "axios";
+export default function CreateCAtegory({ setShow, show, setCatdata }) {
   const [catName, setCatName] = useState("");
   const [catId, setCatId] = useState();
 
   const Create = () => {
-    const TBody = JSON.stringify({
+    const TBody = {
       categoryName: catName,
       categoryId: catId,
-      type: "HI",
-    });
+    };
 
-    console.log(TBody);
+    // console.log(TBody);
 
-    fetch("http://localhost:8090/api/category", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: TBody,
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    axios
+      .post("http://localhost:8090/api/category", TBody)
+      .then((res) => setCatdata(res.data.result));
     setShow(false);
   };
 

@@ -10,49 +10,47 @@ export default function CreateUser({ show, setShow, id, selectedUser }) {
       .get("http://localhost:8090/api/user")
       .then((res) => setData(res.data.result));
   }, []);
- 
-
-  function Check(event){
-   if(event.target.password.value == event.target.rePassword.value){
-    setCheck(true)
-    setShow(!show)
-    console.log(event.target.password.value );
-   }
-  }
 
   function Create(event) {
     event.preventDefault();
-    const data = {
-      firstName: event.target.firstName.value,
-      lastName: event.target.lastName.value,
-      username: event.target.userName.value,
-      password: event.target.password.value,
-      rePassword: event.target.rePassword.value,
-    };
-    console.log(data)
-    if(selectedUser){
-      fetch(`http://localhost:8090/api/user/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+
+    event.target.password.value === event.target.rePassword.value
+      ? setCheck(true)
+      : setCheck(false);
+    console.log(event.target.password.value);
+
+    if (check) {
+      alert("Success");
+      const data = {
+        firstName: event.target.firstName.value,
+        lastName: event.target.lastName.value,
+        username: event.target.userName.value,
+        password: event.target.password.value,
+        rePassword: event.target.rePassword.value,
+      };
+      console.log(data);
+      if (selectedUser) {
+        fetch(`http://localhost:8090/api/user/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      } else {
+        fetch("http://localhost:8090/api/user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      }
+    } else {
+      alert("Wrong password");
+      console.log(check);
     }
-    else{
-    fetch("http://localhost:8090/api/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-    }
-  check ? alert("Success")  : alert("Wrong password")
   }
-
-
-
 
   const style = {
     border: check ? "1px solid green" : "1px solid red",
@@ -66,7 +64,7 @@ export default function CreateUser({ show, setShow, id, selectedUser }) {
         </button>
       </div>
       <form onSubmit={Create} className="w-50 d-flex flex-column gap-3">
-        <div >
+        <div>
           <input
             className="form-control"
             placeholder="FirstName..."

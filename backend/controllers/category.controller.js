@@ -15,29 +15,23 @@ exports.getAll = (req, res) => {
 exports.create = (req, res) => {
   const { categoryId, categoryName } = req.body;
 
-  fs.readFile(dataFile, "utf-8", (err, data) => {
+  fs.readFile("./data/category.json", (err, data) => {
     const parsedData = JSON.parse(data);
 
-    const newArr = [...parsedData];
+    parsedData.push({ categoryId, categoryName });
+    console.log(parsedData);
 
-    console.log(newArr);
+    fs.writeFile(
+      "./data/category.json",
+      JSON.stringify(parsedData),
 
-    const aa = { categoryId: +categoryId, categoryName: categoryName };
-
-    newArr.push(aa);
-
-    console.log(aa);
-
-    console.log(newArr);
-
-    // console.log(typeOf(newObj));
-
-    fs.writeFile(dataFile, JSON.stringify(newArr), (writeErr) => {
-      if (writeErr) {
-        return res.json({ status: false, message: writeErr });
+      (writeErr) => {
+        if (writeErr) {
+          return res.json({ status: false, message: writeErr });
+        }
+        return res.json({ status: true, result: parsedData });
       }
-      return res.json({ status: true, result: newArr });
-    });
+    );
   });
 };
 

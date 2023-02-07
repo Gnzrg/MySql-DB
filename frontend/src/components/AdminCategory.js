@@ -12,16 +12,16 @@ export default function AdminCategory() {
       .get("http://localhost:8090/api/category")
       .then((res) => setCatdata(res.data.result));
   }, []);
-  fetch(`http://localhost:8090/api/category/${catId}`, {
-    method: "DELETE",
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
+  // fetch(`http://localhost:8090/api/category/${catId}`, {
+  //   method: "DELETE",
+  // })
+  //   .then((res) => res.json())
+  //   .then((data) => console.log(data));
   const Delete = (id) => {
     setCatId(id);
   };
   return show ? (
-    <CreateCAtegory setShow={setShow} show={show} />
+    <CreateCAtegory setShow={setShow} show={show} setCatdata={setCatdata} />
   ) : (
     <div>
       <div className="w-100 d-flex justify-content-end pt-2">
