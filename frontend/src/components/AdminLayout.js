@@ -58,6 +58,14 @@ export default function AdminLayout() {
                 Users
               </NavLink>
             </li>
+            <li className="pt-3">
+              <NavLink
+                to="/menu"
+                className=" text-decoration-none  text-light fs-3"
+              >
+                Menu
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className="col-md-9">

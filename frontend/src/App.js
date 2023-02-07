@@ -5,6 +5,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import AdminProducts from "./components/AdminProducts";
 import AdminCategory from "./components/AdminCategory";
 import { Routes, Route } from "react-router-dom";
+import AdminMenu from "./components/AdminMenu";
 import Users from "./components/Users";
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/products" element={<AdminProducts />} />
           <Route path="/users" element={<Users />} />
           <Route path="/category" element={<AdminCategory />} />
+          <Route path="/menu" element={<AdminMenu/>}/>
         </Route>
       </Routes>
     </div>

@@ -2,12 +2,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 export default function CreateUser({ show, setShow, id, selectedUser }) {
-  // const [firstName, setFirstName] = useState();
-  // const [lastName, setLastName] = useState();
-  // const [username, setUsername] = useState("");
-  // const [userType, setUserType] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [rePassword, setRePassword] = useState(id);
   const [check, setCheck] = useState(false);
   const [data, setData] = useState([]);
 
@@ -16,40 +10,15 @@ export default function CreateUser({ show, setShow, id, selectedUser }) {
       .get("http://localhost:8090/api/user")
       .then((res) => setData(res.data.result));
   }, []);
-  // const Create = (id) => {
-  //   if (password === rePassword) {
-  //     data.map((e) => {
-  //       if (id == e.userId) {
-  //         setFirstName(e.firstName);
-  //         setLastName(e.lastName);
-  //         setUsername(e.username);
-  //         setPassword(e.password);
-  //         setUserType(e.userType);
-  //         fetch(`http://localhost:8090/api/user/${id}`, {
-  //           method: "PUT" /* or PATCH */,
-  //           headers: { "Content-Type": "application/json" },
-  //           body: JSON.stringify({
-  //             firstName: firstName,
-  //             lastName: lastName,
-  //             username: username,
-  //             password: password,
-  //             userType: userType,
-  //           }),
-  //         })
-  //           .then((res) => res.json())
-  //           .then((data) => console.log(data));
-  //       } else if (password == rePassword) {
-  //         setCheck(true);
-  //         check ? setShow(true) : setShow(false);
-  //       } else {
-  //
-  //
-  //       }
-  //     });
-  //   } else {
-  //     alert("password taarahgvi bna");
-  //   }
-  // };
+ 
+
+  function Check(event){
+   if(event.target.password.value == event.target.rePassword.value){
+    setCheck(true)
+    setShow(!show)
+    console.log(event.target.password.value );
+   }
+  }
 
   function Create(event) {
     event.preventDefault();
@@ -79,6 +48,8 @@ export default function CreateUser({ show, setShow, id, selectedUser }) {
       .then((res) => res.json())
       .then((data) => console.log(data));
     }
+  check ? alert("Success")  : alert("Wrong password")
+  }
 
 
 
@@ -94,8 +65,8 @@ export default function CreateUser({ show, setShow, id, selectedUser }) {
           <i class="bi bi-x-square"></i>
         </button>
       </div>
-      <form onSubmit={Create}>
-        <div className="w-50 d-flex flex-column gap-3">
+      <form onSubmit={Create} className="w-50 d-flex flex-column gap-3">
+        <div >
           <input
             className="form-control"
             placeholder="FirstName..."
