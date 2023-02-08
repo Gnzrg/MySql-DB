@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CreateMenu({show , setShow}) {
+export default function CreateMenu({show , setShow  , setData}) {
     function Create(event) {
 event.preventDefault();
 const data = {
@@ -13,7 +13,8 @@ fetch("http://localhost:8090/api/menu", {
     headers : {"Content-Type" : "application/json"},
     body :JSON.stringify(data)
 }).then((res) => res.json())
-  .then((data) => console.log(data))
+  .then((data) => setData(data.result))
+  setShow(false)
     }
   return (
     <div className='w-75 d-flex flex-column gap-3 '>

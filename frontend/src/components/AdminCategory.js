@@ -5,20 +5,19 @@ import CreateCAtegory from "./CreateCAtegory";
 
 export default function AdminCategory() {
   const [catData, setCatdata] = useState([]);
-  const [catId, setCatId] = useState(0);
   const [show, setShow] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:8090/api/category")
       .then((res) => setCatdata(res.data.result));
   }, []);
-  // fetch(`http://localhost:8090/api/category/${catId}`, {
-  //   method: "DELETE",
-  // })
-  //   .then((res) => res.json())
-  //   .then((data) => console.log(data));
-  const Delete = (id) => {
-    setCatId(id);
+  
+  const handleDelete = (id) => {
+    fetch(`http://localhost:8090/api/category/${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((data) => setCatdata(data.result));
   };
   return show ? (
     <CreateCAtegory setShow={setShow} show={show} setCatdata={setCatdata} />
@@ -45,7 +44,7 @@ export default function AdminCategory() {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => Delete(e.id)}
+                    onClick={() => handleDelete(e.categoryId)}
                   >
                     Delete
                   </button>

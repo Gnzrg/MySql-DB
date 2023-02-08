@@ -19,11 +19,11 @@ export default function AdminProducts() {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setProData(data.result));
   };
   console.log(proData);
   return add ? (
-    <AddProduct handleChange={handleChange} />
+    <AddProduct handleChange={handleChange} setProData={setProData}/>
   ) : (
     <div>
       <div className="w-100 d-flex justify-content-end">

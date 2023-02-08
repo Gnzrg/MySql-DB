@@ -14,13 +14,13 @@ export default function AdminMenu() {
         fetch(`http://localhost:8090/api/menu/${id}` , {
             method : "DELETE"
         }).then((res) => res.json())
-        .then((res) => console.log(res))
+        .then((data) => setData(data.result))
     }
   
 
         console.log(data);
   return (
-    show ? <CreateMenu show={show} setShow={setShow}/> :
+    show ? <CreateMenu show={show} setShow={setShow} setData={setData}/> :
     <div>
         <div className='w-100 pt-3 d-flex justify-content-end'>
             <button className='btn btn-primary' onClick={() => setShow(!show)}>Add Menu</button>

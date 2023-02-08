@@ -23,9 +23,75 @@ export default function AdminLayout() {
         </div>
         <button className="btn  btn-warning text-white">Log Out</button>
       </div>
-      <div className="container-fluid d-flex w-100">
-        <div className="col-md-3 bg-secondary " style={{ height: 1100 }}>
-          <ul className="list-unstyled ">
+      <div className="container-fluid row w-100">
+        <div className="col-md-3 bg-secondary d-flex flex-column gap-3 pt-3" style={{ height: 670 }}>
+          <div className="row">
+            <div className="col-md-3 fs-3 text-light">
+            <i class="bi bi-list-nested"></i>
+            </div>
+            <div className="col-md-6">
+            <NavLink
+                to="/"
+                className=" text-decoration-none  text-light fs-3"
+              >
+                Dashboard
+              </NavLink>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3 fs-3 text-light">
+            <i class="bi bi-cart"></i>
+            </div>
+            <div className="col-md-6">
+            <NavLink
+                to="/products"
+                className=" text-decoration-none  text-light fs-3"
+              >
+                Products
+              </NavLink>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3 fs-3 text-light">
+            <i class="bi bi-tags"></i>  
+            </div>
+            <div className="col-md-6">
+            <NavLink
+                to="/category"
+                className=" text-decoration-none  text-light fs-3"
+              >
+                Category
+                
+              </NavLink>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3 fs-3 text-light">
+            <i class="bi bi-people"></i>
+            </div>
+            <div className="col-md-6">
+            <NavLink
+                to="/users"
+                className=" text-decoration-none text-light fs-3"
+              >
+                Users
+              </NavLink>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3 fs-3 text-light">
+            <i class="bi bi-list"></i>
+            </div>
+            <div className="col-md-6">
+            <NavLink
+                to="/menu"
+                className=" text-decoration-none  text-light fs-3"
+              >
+                Menu
+              </NavLink>
+            </div>
+          </div>
+          {/* <ul className="list-unstyled ">
             <li className="pt-3">
               <NavLink
                 to="/"
@@ -35,38 +101,22 @@ export default function AdminLayout() {
               </NavLink>
             </li>
             <li className="pt-3">
-              <NavLink
-                to="/products"
-                className=" text-decoration-none  text-light fs-3"
-              >
-                Products
-              </NavLink>
+             
             </li>
             <li className="pt-3">
-              <NavLink
-                to="/category"
-                className=" text-decoration-none  text-light fs-3"
-              >
-                Category
-              </NavLink>
+             
+            </li>
+            <li className="pt-3 fs-3 text-light ">
+              <div>
+              
+              
+              </div>
+            
             </li>
             <li className="pt-3">
-              <NavLink
-                to="/users"
-                className=" text-decoration-none  text-light fs-3"
-              >
-                Users
-              </NavLink>
+           
             </li>
-            <li className="pt-3">
-              <NavLink
-                to="/menu"
-                className=" text-decoration-none  text-light fs-3"
-              >
-                Menu
-              </NavLink>
-            </li>
-          </ul>
+          </ul> */}
         </div>
         <div className="col-md-9">
           <Outlet />
