@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-export default function AddProduct({ handleChange , setProData }) {
+export default function AddProduct({ handleChange, setProData }) {
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [img, setImg] = useState("");
   const [isTrending, setIsTrending] = useState();
   const [category, setCategory] = useState("");
   const [discount, setDiscount] = useState("");
-  const [description , setDescription] = useState("")
-  const [date, setDate] = useState("")
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
   const Create = () => {
     fetch("http://localhost:8090/api/products", {
       method: "POST",
@@ -21,8 +21,8 @@ export default function AddProduct({ handleChange , setProData }) {
         discount: discount,
         isTrending: isTrending,
         categoryName: category,
-        description : description,
-        date : date
+        description: description,
+        date: date,
 
         /* other product data */
       }),
@@ -74,13 +74,13 @@ export default function AddProduct({ handleChange , setProData }) {
           placeholder="Description..."
           onChange={(e) => setDescription(e.target.value)}
         />
-           <input
+        <input
           className="form-control mt-3"
           type="date"
           placeholder="Date"
           onChange={(e) => setDate(e.target.value)}
         />
-           <input
+        <input
           className="form-control mt-3"
           type="number"
           placeholder="Discount percent"

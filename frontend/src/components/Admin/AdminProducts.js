@@ -23,7 +23,7 @@ export default function AdminProducts() {
   };
   console.log(proData);
   return add ? (
-    <AddProduct handleChange={handleChange} setProData={setProData}/>
+    <AddProduct handleChange={handleChange} setProData={setProData} />
   ) : (
     <div>
       <div className="w-100 d-flex justify-content-end">
@@ -55,6 +55,7 @@ export default function AdminProducts() {
                   <h6 className="text-danger">Not Trending</h6>
                 )}
               </div>
+              <p>{e.date}</p>
               <div className="w-100 d-flex justify-content-between ">
                 <button className="w-25 btn btn-warning">Edit</button>
                 <button

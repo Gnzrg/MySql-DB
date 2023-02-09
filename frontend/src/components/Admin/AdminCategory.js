@@ -11,13 +11,13 @@ export default function AdminCategory() {
       .get("http://localhost:8090/api/category")
       .then((res) => setCatdata(res.data.result));
   }, []);
-  
+
   const handleDelete = (id) => {
     fetch(`http://localhost:8090/api/category/${id}`, {
-    method: "DELETE",
-  })
-    .then((res) => res.json())
-    .then((data) => setCatdata(data.result));
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => setCatdata(data.result));
   };
   return show ? (
     <CreateCAtegory setShow={setShow} show={show} setCatdata={setCatdata} />

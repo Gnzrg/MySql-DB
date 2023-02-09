@@ -8,9 +8,9 @@ Content-Type: application/json
 
 {
     
-    "menuName" : "Add",
-    "link" : "/help",
-    "position" : 1
+    "menuName" : "Products",
+    "link" : "/products",
+    "position" : 4
 }
 ###
 DELETE http://localhost:8090/api/menu/2e2e2b9d-4ec2-4108-8f09-36d6c92ab693
