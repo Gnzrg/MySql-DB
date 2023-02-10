@@ -4,12 +4,13 @@ import React, { useState } from "react";
 export default function AddProduct({ handleChange, setProData }) {
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
-  const [img, setImg] = useState("");
+  const [thumbImg, setThumbImg] = useState("");
   const [isTrending, setIsTrending] = useState();
   const [category, setCategory] = useState("");
   const [discount, setDiscount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
+  const [img, setImg] = useState([]);
   const Create = () => {
     fetch("http://localhost:8090/api/products", {
       method: "POST",
@@ -17,12 +18,13 @@ export default function AddProduct({ handleChange, setProData }) {
       body: JSON.stringify({
         productName: productName,
         price: price,
-        img: img,
+        thumbImg: thumbImg,
         discount: discount,
         isTrending: isTrending,
         categoryName: category,
         description: description,
         date: date,
+        img: img,
 
         /* other product data */
       }),
@@ -102,7 +104,36 @@ export default function AddProduct({ handleChange, setProData }) {
             formData.append("upload_preset", "lwvom2iu");
 
             axios.post(url, formData).then((res) => {
-              setImg(res.data.secure_url);
+              setThumbImg(res.data.secure_url);
+            });
+          }}
+        />
+        <input
+          className="form-control mt-3"
+          type="file"
+          multiple
+          onChange={(e) => {
+            console.log(e.target.value);
+            const url = "https://api.cloudinary.com/v1_1/lwvom2iu/upload";
+            const formData = new FormData();
+            let file = e.target.files;
+            console.log(file);
+
+            const images = [];
+            for (let i = 0; i < file.length; i++) {
+              images.push(file[i]);
+            }
+            console.log(images);
+            images.map((file) => {
+              formData.append("file", file);
+              formData.append("api_key", "384825931744178");
+              formData.append("folder", "E-Commerce");
+              formData.append("upload_preset", "lwvom2iu");
+
+              axios.post(url, formData).then((res) => {
+                console.log(res.data.secure_url);
+                setImg(res.data.secure_url);
+              });
             });
           }}
         />

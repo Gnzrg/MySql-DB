@@ -17,8 +17,17 @@ exports.getAll = (request, response) => {
 };
 
 exports.create = (request, response) => {
-  const { categoryId, productName, description ,date ,  categoryName, price, isTrending, img } =
-    request.body;
+  const {
+    categoryId,
+    productName,
+    description,
+    date,
+    categoryName,
+    price,
+    isTrending,
+    img,
+    thumbImg,
+  } = request.body;
   fs.readFile(dataFile, "utf-8", (readErr, data) => {
     if (readErr) {
       return response.json({ status: false, message: readErr });
@@ -33,7 +42,10 @@ exports.create = (request, response) => {
       categoryName,
       price,
       isTrending,
-      img,description,date
+      img,
+      description,
+      date,
+      thumbImg,
     };
 
     parsedData.push(newObj);

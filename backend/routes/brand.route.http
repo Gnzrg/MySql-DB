@@ -1,0 +1,14 @@
+###
+GET http://localhost:8090/api/brand
+
+###
+POST http://localhost:8090/api/brand
+Content-Type: application/json
+
+{
+    "brandName" : "Hiawei",
+    "brandId" : 3
+}
+
+###
+DELETE http://localhost:8090/api/brand/

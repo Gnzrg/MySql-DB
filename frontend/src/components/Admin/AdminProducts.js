@@ -37,7 +37,7 @@ export default function AdminProducts() {
           return (
             <div className="col-md-3 border rounded">
               <div>
-                <img src={e.img} alt="" />
+                <img src={e.thumbImg} alt="" />
               </div>
               <h3>{e.productName}</h3>
               <h5>{e.categoryName}</h5>
