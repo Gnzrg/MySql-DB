@@ -65,6 +65,7 @@ export default function AddProduct({ handleChange, setProData }) {
 
         <input
           className="form-control mt-3"
+          type="number"
           placeholder="Price..."
           onChange={(e) => {
             setPrice(e.target.value);
