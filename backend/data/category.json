@@ -1,1 +1,7 @@
-[{"categoryId":"1","categoryName":"SmartPhone"},{"categoryId":"2","categoryName":"Tablet"},{"categoryId":"3","categoryName":"Laptop"},{"categoryId":"4","categoryName":"Kitchen Set"},{"categoryId":"5","categoryName":"Bedroom Set"}]
+[
+  { "categoryId": "1", "categoryName": "SmartPhone" },
+  { "categoryId": "2", "categoryName": "Tablet" },
+  { "categoryId": "3", "categoryName": "Laptop" },
+  { "categoryId": "4", "categoryName": "Kitchen Set" },
+  { "categoryId": "5", "categoryName": "Bedroom Set" }
+]

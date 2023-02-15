@@ -27,6 +27,7 @@ exports.create = (request, response) => {
     isTrending,
     img,
     thumbImg,
+    isLiked,
   } = request.body;
   fs.readFile(dataFile, "utf-8", (readErr, data) => {
     if (readErr) {
@@ -46,6 +47,7 @@ exports.create = (request, response) => {
       description,
       date,
       thumbImg,
+      isLiked,
     };
 
     parsedData.push(newObj);
@@ -68,6 +70,7 @@ exports.update = (req, res) => {
     price,
     isTrending,
     productId,
+    isLiked,
   } = req.body;
   fs.readFile(dataFile, "utf-8", (readErr, data) => {
     if (readErr) {
@@ -85,6 +88,7 @@ exports.update = (req, res) => {
           categoryName,
           price,
           isTrending,
+          isLiked,
         };
       } else {
         return productObj;
