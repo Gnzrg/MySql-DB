@@ -38,7 +38,8 @@ exports.create = (req, res) => {
   });
 };
 exports.update = (req, res) => {
-  const { firstName, lastName, userName, password, userType } = req.body;
+  const { firstName, lastName, userName, password, userType, likedItems } =
+    req.body;
   const { id } = req.params;
 
   fs.readFile(dataFile, "utf-8", (readErr, data) => {
@@ -48,7 +49,15 @@ exports.update = (req, res) => {
     const parsedData = JSON.parse(data);
     const updateData = parsedData.map((user) => {
       if (user.userId == id) {
-        return { ...user, firstName, lastName, userName, password, userType };
+        return {
+          ...user,
+          firstName,
+          lastName,
+          userName,
+          password,
+          userType,
+          likedItems,
+        };
       } else {
         return user;
       }
@@ -80,5 +89,20 @@ exports.delete = (req, res) => {
       return res.json({ status: true, result: deletedData });
     });
     // res.json({status: true , result  : data })
+  });
+};
+
+exports.getOne = (req, res) => {
+  const { id } = req.params;
+
+  fs.readFile(dataFile, "utf-8", (readErr, data) => {
+    if (readErr) {
+      return res.json({ status: false, message: readErr });
+    }
+    const savedData = JSON.parse(data);
+
+    const user = savedData.find((userItem) => (userItem.userId = id));
+
+    return res.json({ status: true, result: user });
   });
 };

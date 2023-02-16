@@ -1,26 +1,36 @@
 [
   {
     "userId": "b57fb59c-d11d-4c94-809c-e51665e61cd8",
-    "firstName": "Ganzorig123123",
-    "lastName": "Bat-Erdene123123",
+    "firstName": "Ganzorig",
+    "lastName": "Bat-Erdene",
     "password": "1231",
     "username": "Ganzo",
-    "likedItems": ["477465be-8dd1-412a-b038-ccd4bc7be60b","760416e6-a7b9-4bf6-ac7b-1f20cb67f33c"]
+    "likedItems": [
+      "760416e6-a7b9-4bf6-ac7b-1f20cb67f33c",
+      "90a32d9d-286f-4360-a594-5fcea51f8caa",
+      "2e797c10-0ccd-44a4-8458-ef95a03ca1d7",
+      "93937c66-06a6-47cf-95bb-ed7585a613d3",
+      "dc65817f-aaae-421f-bea5-d4754d1637b7",
+      "477465be-8dd1-412a-b038-ccd4bc7be60b"
+    ],
+    "userType": "User"
   },
   {
     "userId": "916f6f8c-d9c5-4882-8455-a81478ddbe43",
     "firstName": "Nado",
     "lastName": "Test",
     "password": "123",
-    "likedItems": []
+    "username": "Test",
+    "likedItems": ["5da1b88d-1586-4d5e-ba9c-8a742787806e"]
   },
   {
     "userId": "3b6bf9ae-d04c-4775-88ad-cc1380790dee",
     "firstName": "asdasd",
     "lastName": "asdasd",
-    "password": "asd",
     "userType": "Admin",
-    "likedItems": []
+    "username": "Gaz",
+    "password": "12",
+    "likedItems": ["2e797c10-0ccd-44a4-8458-ef95a03ca1d7"]
   },
   {
     "userId": "2e402eba-e297-4750-8779-4d7830dcff80",
