@@ -2,6 +2,10 @@
 GET http://localhost:8090/api/user
 
 ###
+GET http://localhost:8090/api/user/57fb59c-d11d-4c94-809c-e51665e61cd8"
+
+
+###
 POST http://localhost:8090/api/user
 Content-Type: application/json
 
