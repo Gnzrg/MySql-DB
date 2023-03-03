@@ -2,15 +2,19 @@ const { json } = require("express");
 const fs = require("fs");
 
 const dataFile = process.cwd() + "/data/category.json";
+const categoryService = require("../model/category-service.js");
 
-exports.getAll = (req, res) => {
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
+exports.getAll = async (req, res) => {
+  const { limit } = req.query;
+  try {
+    const result = await categoryService.getCategory(limit);
+    if (result.length > 0) {
+      res.json({ status: true, result });
     }
-    const savedData = JSON.parse(data);
-    return res.json({ status: true, result: savedData });
-  });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
 };
 exports.create = (req, res) => {
   const { categoryId, categoryName } = req.body;

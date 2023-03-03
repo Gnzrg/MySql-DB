@@ -4,18 +4,20 @@ const uuid = require("uuid");
 
 const dataFile = process.cwd() + "/data/products.json";
 
-exports.getAll = (request, response) => {
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return response.json({ status: false, message: readErr });
+const productService = require("../model/product-service.js");
+exports.getAll = async (req, res) => {
+  const { limit } = req.query;
+  try {
+    const result = await productService.getProducts(limit);
+    console.log(result);
+    if (result.length > 0) {
+      res.json({ status: true, result });
     }
-
-    const savedData = JSON.parse(data);
-
-    return response.json({ status: true, result: savedData });
-  });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
 };
-
 exports.create = (request, response) => {
   const {
     categoryId,

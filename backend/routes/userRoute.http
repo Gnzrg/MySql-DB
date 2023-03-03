@@ -1,8 +1,8 @@
 ###
-GET http://localhost:8090/api/user
+GET http://localhost:8090/api/user?limit=10
 
 ###
-GET http://localhost:8090/api/user/57fb59c-d11d-4c94-809c-e51665e61cd8"
+GET http://localhost:8090/api/user/1
 
 
 ###
@@ -10,26 +10,27 @@ POST http://localhost:8090/api/user
 Content-Type: application/json
 
 {
-    "userName" : "Taami",
-    "firstName" : "Nado",
-    "userType" : "Admin",
-    "lastName" : "Test",
-    "password" : "123"
+    "first_name" : "Taami",
+    "last_name" : "Nado",
+    "age" : 23,
+    "user_name" : "Test",
+    "birth_date" : "1990-02-01"
 
 } 
 
 ### 
-PUT http://localhost:8090/api/user/b57fb59c-d11d-4c94-809c-e51665e61cd8
+PUT http://localhost:8090/api/user/1
 Content-Type: application/json
 
 {
-    "userName" : "Ganzooooo",
-    "firstName" : "Ganzorig",
-    "userType" : "User",
-    "lastName" : "Bat-Erdene",
-    "password" : "1231"
+    "first_name" : "Ganzooooo",
+    "last_name" : "Ganzorig",
+    "age" : 18,
+    "user_name" : "testets",
+    "birth_date" : "2009-12-01",
+
 
 }
 
 ###
-DELETE http://localhost:8090/api/user/3e65e6fe-e962-4a50-a4be-db1d59f7c05b
+DELETE http://localhost:8090/api/user/1

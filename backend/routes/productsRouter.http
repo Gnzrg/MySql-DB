@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8090/api/products
+GET http://localhost:8090/api/products?limit=10 
 
 ###
 POST http://localhost:8090/api/products

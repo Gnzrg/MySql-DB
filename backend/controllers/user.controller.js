@@ -3,106 +3,84 @@ const fs = require("fs");
 const uuid = require("uuid");
 const dataFile = process.cwd() + "/data/user.json";
 
-exports.getAll = (req, res) => {
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
-    }
-    const savedData = JSON.parse(data);
-    return res.json({ status: true, result: savedData });
-  });
-};
+const userService = require("../model/user-service.js");
 
-exports.create = (req, res) => {
-  const { firstName, lastName, userName, password, userType } = req.body;
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
+exports.getAll = async (req, res) => {
+  const { limit } = req.query;
+  try {
+    const result = await userService.getUsers(limit);
+    console.log(result);
+    if (result.length > 0) {
+      res.json({ status: true, result });
     }
-    const parsedData = JSON.parse(data);
-    const newObj = {
-      userId: uuid.v4(),
-      firstName,
-      lastName,
-      userName,
-      password,
-      userType,
-    };
-    parsedData.push(newObj);
-    fs.writeFile(dataFile, JSON.stringify(parsedData), (writeErr) => {
-      if (writeErr) {
-        return res.json({ status: false, message: writeErr });
-      }
-      return res.json({ status: true, result: parsedData });
-    });
-  });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
 };
-exports.update = (req, res) => {
-  const { firstName, lastName, userName, password, userType, likedItems } =
-    req.body;
+exports.getOne = async (req, res) => {
   const { id } = req.params;
-
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
-    }
-    const parsedData = JSON.parse(data);
-    const updateData = parsedData.map((user) => {
-      if (user.userId == id) {
-        return {
-          ...user,
-          firstName,
-          lastName,
-          userName,
-          password,
-          userType,
-          likedItems,
-        };
-      } else {
-        return user;
-      }
-    });
-
-    fs.writeFile(dataFile, JSON.stringify(updateData), (writeErr) => {
-      if (writeErr) {
-        return res.json({ status: false, message: readErr });
-      }
-      console.log(updateData);
-
-      return res.json({ value: "HAHAH" });
-      //   return res.json({ status: true, result: updateData });
-    });
-  });
+  if (!id) return res.json({ status: false, message: "User not found" });
+  try {
+    const result = await userService.getOne(id);
+    console.log(result);
+    res.json({ status: true, result });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
 };
-exports.delete = (req, res) => {
-  const { id } = req.params;
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
-    }
-    const parsedData = JSON.parse(data);
-    const deletedData = parsedData.filter((users) => users.userId != id);
-    fs.writeFile(dataFile, JSON.stringify(deletedData), (writeErr) => {
-      if (writeErr) {
-        return res.json({ status: false, message: writeErr });
-      }
-      return res.json({ status: true, result: deletedData });
-    });
-    // res.json({status: true , result  : data })
-  });
+exports.create = async (req, res) => {
+  const { first_name, last_name, age, user_name } = req.body;
+  const newObj = {
+    first_name,
+    last_name,
+    age,
+    user_name,
+  };
+  try {
+    const result = await userService.createUser(newObj);
+    console.log(result);
+    res.json({ status: true, result });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
 };
 
-exports.getOne = (req, res) => {
+exports.updateUser = async (req, res) => {
   const { id } = req.params;
-
-  fs.readFile(dataFile, "utf-8", (readErr, data) => {
-    if (readErr) {
-      return res.json({ status: false, message: readErr });
+  if (!id) return res.json({ status: false, message: "USer not OFund" });
+  // const { firstName, lastName, userName, password, userType, likedItems } =
+  //   req.body;
+  try {
+    const result = await userService.updateUser(id, req.body);
+    console.log(result);
+    if (result.length > 0 && result[0].affectedRows > 0) {
+      return res.json({ status: true, message: "Success" });
+    } else {
+      return res.json({ status: false, message: "Amjiotgui" });
     }
-    const savedData = JSON.parse(data);
-
-    const user = savedData.find((userItem) => (userItem.userId = id));
-
-    return res.json({ status: true, result: user });
-  });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
+};
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+  if (!id) return res.json({ status: false, message: "USer not OFund" });
+  // const { firstName, lastName, userName, password, userType, likedItems } =
+  //   req.body;
+  try {
+    const result = await userService.deleteUser(id);
+    console.log(result);
+    if (result && result[0].affectedRows > 0) {
+      return res.json({ status: true, message: "Success" });
+    } else {
+      return res.json({ status: false, message: "Amjiotgui" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.json({ status: false, message: err });
+  }
 };
